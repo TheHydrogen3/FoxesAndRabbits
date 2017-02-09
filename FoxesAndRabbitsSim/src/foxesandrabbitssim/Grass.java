@@ -44,7 +44,7 @@ public class Grass extends Actor
         
         for (int c = 0; c <= Grass.growthRate; c++)
         {
-            if (free != null)
+            if (free == null)
             {
                 Location loc = free.remove(0);
                 Grass sprout = new Grass(field, loc);
