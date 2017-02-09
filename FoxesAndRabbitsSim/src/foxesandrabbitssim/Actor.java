@@ -6,53 +6,30 @@
 package foxesandrabbitssim;
 
 import java.util.List;
-import java.util.Random;
 
 /**
- * A class representing shared characteristics of animals.
- * 
- * @author David J. Barnes and Michael Kölling
- * @version 2011.07.31
+ *
+ * @author HaIIvard
  */
 public abstract class Actor
 {
-    // Whether the animal is alive or not.
-    private boolean alive;
-    // The animal's field.
-    private Field field;
-    // The animal's position in the field.
-    private Location location;
+        private Location location;
+        private boolean alive;
+        private Field field;
     
-    private static final Random rand = Randomizer.getRandom();
-    
-    private String gender;
-    
-    /**
-     * Create a new animal at location in field.
-     * 
-     * @param field The field currently occupied.
-     * @param location The location within the field.
-     */
-    public Actor(Field field, Location location)
+    public Actor()
     {
+        setLocation(location);
         alive = true;
         this.field = field;
-        setLocation(location);
-        if(rand.nextBoolean())
-        {
-            gender = "Female";
-        } else
-        {
-            gender = "Male";
-        }
     }
-    
+
     /**
      * Make this animal act - that is: make it do
      * whatever it wants/needs to do.
      * @param newAnimals A list to receive newly born animals.
      */
-    abstract public void act(List<Actor> newAnimals);
+    public abstract void act(List<Animal> newAnimals);
 
     /**
      * Check whether the animal is alive or not.
@@ -62,11 +39,6 @@ public abstract class Actor
     {
         return alive;
     }
-    
-    protected String getGender()
-    {
-        return gender;
-    }
 
     /**
      * Indicate that the animal is no longer alive.
@@ -75,7 +47,8 @@ public abstract class Actor
     protected void setDead()
     {
         alive = false;
-        if(location != null) {
+        if (location != null)
+        {
             field.clear(location);
             location = null;
             field = null;
@@ -90,20 +63,21 @@ public abstract class Actor
     {
         return location;
     }
-    
+
     /**
      * Place the animal at the new location in the given field.
      * @param newLocation The animal's new location.
      */
     protected void setLocation(Location newLocation)
     {
-        if(location != null) {
+        if (location != null)
+        {
             field.clear(location);
         }
         location = newLocation;
         field.place(this, newLocation);
     }
-    
+
     /**
      * Return the animal's field.
      * @return The animal's field.
@@ -112,4 +86,5 @@ public abstract class Actor
     {
         return field;
     }
+    
 }

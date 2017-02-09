@@ -15,7 +15,7 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
-public class Fox extends Actor
+public class Fox extends Animal
 {
     // Characteristics shared by all foxes (class variables).
 
@@ -68,7 +68,7 @@ public class Fox extends Actor
      * @param field The field currently occupied.
      * @param newFoxes A list to return newly born foxes.
      */
-    public void act(List<Actor> newFoxes)
+    public void act(List<Animal> newFoxes)
     {
         incrementAge();
         incrementTimeSincePregnant();
@@ -162,7 +162,7 @@ public class Fox extends Actor
      *
      * @param newFoxes A list to return newly born foxes.
      */
-    private void giveBirth(List<Actor> newFoxes)
+    private void giveBirth(List<Animal> newFoxes)
     {
         // New foxes are born into adjacent locations.
         // Get a list of adjacent free locations.

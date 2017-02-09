@@ -15,7 +15,7 @@ import java.util.Random;
  * @author David J. Barnes and Michael Kölling
  * @version 2011.07.31
  */
-public class Rabbit extends Actor
+public class Rabbit extends Animal
 {
     // Characteristics shared by all rabbits (class variables).
 
@@ -60,7 +60,7 @@ public class Rabbit extends Actor
      * around. Sometimes it will breed or die of old age.
      * @param newRabbits A list to return newly born rabbits.
      */
-    public void act(List<Actor> newRabbits)
+    public void act(List<Animal> newRabbits)
     {
         incrementAge();
         incrementTimeSincePregnant();
@@ -103,7 +103,7 @@ public class Rabbit extends Actor
      * New births will be made into free adjacent locations.
      * @param newRabbits A list to return newly born rabbits.
      */
-    private void giveBirth(List<Actor> newRabbits)
+    private void giveBirth(List<Animal> newRabbits)
     {
         // New rabbits are born into adjacent locations.
         // Get a list of adjacent free locations.
