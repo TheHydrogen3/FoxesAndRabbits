@@ -24,7 +24,7 @@ public class Fox extends Actor
     // The age to which a fox can live.
     private static final int MAX_AGE = 1825;
     // The likelihood of a fox breeding.
-    private static final double BREEDING_PROBABILITY = 0.08;
+    private int timeSinceLastPregnant = 0;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 2;
     // The food value of a single rabbit. In effect, this is the
@@ -71,10 +71,11 @@ public class Fox extends Actor
     public void act(List<Actor> newFoxes)
     {
         incrementAge();
+        incrementTimeSincePregnant();
         incrementHunger();
         if (isAlive())
         {
-            if (getGender().equals("Female"))
+            if (getGender().equals("Female") && timeSinceLastPregnant > 365)
 
             {
                 giveBirth(newFoxes);
@@ -108,6 +109,10 @@ public class Fox extends Actor
         {
             setDead();
         }
+    }
+    private void incrementTimeSincePregnant()
+    {
+        timeSinceLastPregnant++;        
     }
 
     /**
@@ -170,6 +175,7 @@ public class Fox extends Actor
             Fox young = new Fox(false, field, loc);
             newFoxes.add(young);
         }
+        timeSinceLastPregnant = 0;
     }
 
     /**
@@ -180,7 +186,7 @@ public class Fox extends Actor
     private int breed()
     {
         int births = 0;
-        if (canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY)
+        if (canBreed())
         {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }

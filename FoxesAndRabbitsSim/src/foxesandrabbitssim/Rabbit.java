@@ -24,7 +24,7 @@ public class Rabbit extends Actor
     // The age to which a rabbit can live.
     private static final int MAX_AGE = 1095;
     // The likelihood of a rabbit breeding.
-    private int timeSinceLastPregnant;
+    private int timeSinceLastPregnant = 0;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     // A shared random number generator to control breeding.
