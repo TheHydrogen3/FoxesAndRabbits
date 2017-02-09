@@ -24,7 +24,7 @@ public class Rabbit extends Actor
     // The age to which a rabbit can live.
     private static final int MAX_AGE = 1095;
     // The likelihood of a rabbit breeding.
-    private static final double BREEDING_PROBABILITY = 0.12;
+    private int timeSinceLastPregnant;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     // A shared random number generator to control breeding.
@@ -63,8 +63,9 @@ public class Rabbit extends Actor
     public void act(List<Actor> newRabbits)
     {
         incrementAge();
+        incrementTimeSincePregnant();
         if(isAlive()) {
-            if(getGender().equals("Female"))
+            if(getGender().equals("Female") && timeSinceLastPregnant > 31)
             {
                 giveBirth(newRabbits);
             }            
@@ -92,6 +93,11 @@ public class Rabbit extends Actor
         }
     }
     
+    private void incrementTimeSincePregnant()
+    {
+        timeSinceLastPregnant++;        
+    }
+    
     /**
      * Check whether or not this rabbit is to give birth at this step.
      * New births will be made into free adjacent locations.
@@ -108,6 +114,7 @@ public class Rabbit extends Actor
             Location loc = free.remove(0);
             Rabbit young = new Rabbit(false, field, loc);
             newRabbits.add(young);
+            timeSinceLastPregnant = 0;
         }
     }
         
@@ -119,7 +126,7 @@ public class Rabbit extends Actor
     private int breed()
     {
         int births = 0;
-        if(canBreed() && rand.nextDouble() <= BREEDING_PROBABILITY) {
+        if(canBreed()) {
             births = rand.nextInt(MAX_LITTER_SIZE) + 1;
         }
         return births;
