@@ -26,12 +26,9 @@ public abstract class Animal extends Actor
      * Create a new animal at location in field.
      * 
      * @param field The field currently occupied.
-     * @param location The location within the field.
      */
     public Animal(Field field, Location location)
     {
-
-
         if(rand.nextBoolean())
         {
             gender = "Female";

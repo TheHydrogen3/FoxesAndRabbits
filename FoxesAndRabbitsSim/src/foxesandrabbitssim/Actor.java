@@ -17,7 +17,7 @@ public abstract class Actor
         private boolean alive;
         private Field field;
     
-    public Actor()
+    public Actor(Field field, Location location)
     {
         setLocation(location);
         alive = true;
