@@ -29,6 +29,7 @@ public abstract class Animal extends Actor
      */
     public Animal(Field field, Location location)
     {
+        super(field, location);
         if(rand.nextBoolean())
         {
             gender = "Female";
