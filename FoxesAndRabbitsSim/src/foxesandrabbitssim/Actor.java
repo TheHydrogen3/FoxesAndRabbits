@@ -29,7 +29,7 @@ public abstract class Actor
      * whatever it wants/needs to do.
      * @param newAnimals A list to receive newly born animals.
      */
-    public abstract void act(List<Animal> newAnimals);
+    public abstract void act(List<Actor> newActors);
 
     /**
      * Check whether the animal is alive or not.
