@@ -52,6 +52,7 @@ public class Rabbit extends Actor
         if(randomAge) {
             age = rand.nextInt(MAX_AGE);
         }
+        
     }
     
     /**
@@ -62,7 +63,7 @@ public class Rabbit extends Actor
     public void act(List<Actor> newRabbits)
     {
         incrementAge();
-        if(isAlive()) {
+        if(isAlive() && getGender().equals("Female")) {
             giveBirth(newRabbits);            
             // Try to move into a free location.
             Location newLocation = getField().freeAdjacentLocation(getLocation());

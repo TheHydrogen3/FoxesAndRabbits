@@ -6,6 +6,7 @@
 package foxesandrabbitssim;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * A class representing shared characteristics of animals.
@@ -22,6 +23,10 @@ public abstract class Actor
     // The animal's position in the field.
     private Location location;
     
+    private static final Random rand = Randomizer.getRandom();
+    
+    private String gender;
+    
     /**
      * Create a new animal at location in field.
      * 
@@ -33,6 +38,13 @@ public abstract class Actor
         alive = true;
         this.field = field;
         setLocation(location);
+        if(rand.nextBoolean())
+        {
+            gender = "Female";
+        } else
+        {
+            gender = "Male";
+        }
     }
     
     /**
@@ -49,6 +61,11 @@ public abstract class Actor
     protected boolean isAlive()
     {
         return alive;
+    }
+    
+    protected String getGender()
+    {
+        return gender;
     }
 
     /**
