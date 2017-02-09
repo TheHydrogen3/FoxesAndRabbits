@@ -19,7 +19,7 @@ public abstract class Actor
     
     public Actor(Field field, Location location)
     {
-        setLocation(location);
+        this.location = location;
         alive = true;
         this.field = field;
     }
