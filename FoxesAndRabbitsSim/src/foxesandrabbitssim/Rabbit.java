@@ -5,6 +5,7 @@
  */
 package foxesandrabbitssim;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -27,6 +28,8 @@ public class Rabbit extends Animal
     private int timeSinceLastPregnant = 0;
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
+    
+    private static final int GRASS_FOOD_VALUE = 3;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -35,6 +38,7 @@ public class Rabbit extends Animal
     // The rabbit's age.
     private int age;
     
+    private int foodLevel;
     
 
     /**
@@ -48,9 +52,14 @@ public class Rabbit extends Animal
     public Rabbit(boolean randomAge, Field field, Location location)
     {
         super(field, location);
-        age = 0;
-        if(randomAge) {
+        if (randomAge)
+        {
             age = rand.nextInt(MAX_AGE);
+            foodLevel = rand.nextInt(GRASS_FOOD_VALUE);
+        } else
+        {
+            age = 0;
+            foodLevel = GRASS_FOOD_VALUE;
         }
         
     }
@@ -64,6 +73,7 @@ public class Rabbit extends Animal
     {
         incrementAge();
         incrementTimeSincePregnant();
+        incrementHunger();
         if(isAlive()) {
             if(getGender().equals("Female") && timeSinceLastPregnant > 31)
             {
@@ -98,6 +108,15 @@ public class Rabbit extends Animal
         timeSinceLastPregnant++;        
     }
     
+    private void incrementHunger()
+    {
+        foodLevel--;
+        if (foodLevel <= 0)
+        {
+            setDead();
+        }
+    }
+    
     /**
      * Check whether or not this rabbit is to give birth at this step.
      * New births will be made into free adjacent locations.
@@ -116,6 +135,29 @@ public class Rabbit extends Animal
             newRabbits.add(young);
             timeSinceLastPregnant = 0;
         }
+    }
+    
+    private Location findFood()
+    {
+        Field field = getField();
+        List<Location> adjacent = field.adjacentLocations(getLocation());
+        Iterator<Location> it = adjacent.iterator();
+        while (it.hasNext())
+        {
+            Location where = it.next();
+            Object actor = field.getObjectAt(where);
+            if (actor instanceof Grass)
+            {
+                Grass grass = (Grass) actor;
+                if (grass.isAlive())
+                {
+                    grass.setDead();
+                    foodLevel = GRASS_FOOD_VALUE;
+                    return where;
+                }
+            }
+        }
+        return null;
     }
         
     /**
