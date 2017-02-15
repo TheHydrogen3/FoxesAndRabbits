@@ -29,7 +29,7 @@ public class Rabbit extends Animal
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     
-    private static final int GRASS_FOOD_VALUE = 3;
+    private static final int GRASS_FOOD_VALUE = 20;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -80,11 +80,15 @@ public class Rabbit extends Animal
                 giveBirth(newRabbits);
             }            
             // Try to move into a free location.
-            Location newLocation = findFood();
+             Location newLocation = findFood();
             if (newLocation == null)
             {
                 // No food found - try to move to a free location.
                 newLocation = getField().freeAdjacentLocation(getLocation());
+            }
+            Location newLocation2 = getField().freeAdjacentLocation(getLocation());
+            if(newLocation2 != null) {
+                setLocation(newLocation2);
             }
             else {
                 // Overcrowding.
