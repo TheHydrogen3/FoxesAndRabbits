@@ -134,6 +134,18 @@ public class Field
         return free;
     }
     
+    public List<Location> getFreeAdjacentLocationsIgnoreGrass(Location location)
+    {
+        List<Location> free = new LinkedList<Location>();
+        List<Location> adjacent = adjacentLocations(location);
+        for(Location next : adjacent) {
+            if(getObjectAt(next) == null || getObjectAt(next) instanceof Grass ) {
+                free.add(next);
+            }
+        }
+        return free;
+    }
+    
     /**
      * Try to find a free location that is adjacent to the
      * given location. If there is none, return null.
