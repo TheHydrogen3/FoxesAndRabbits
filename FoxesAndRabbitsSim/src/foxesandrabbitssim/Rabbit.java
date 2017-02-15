@@ -80,9 +80,11 @@ public class Rabbit extends Animal
                 giveBirth(newRabbits);
             }            
             // Try to move into a free location.
-            Location newLocation = getField().freeAdjacentLocation(getLocation());
-            if(newLocation != null) {
-                setLocation(newLocation);
+            Location newLocation = findFood();
+            if (newLocation == null)
+            {
+                // No food found - try to move to a free location.
+                newLocation = getField().freeAdjacentLocation(getLocation());
             }
             else {
                 // Overcrowding.
