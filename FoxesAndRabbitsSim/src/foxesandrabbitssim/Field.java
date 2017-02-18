@@ -139,11 +139,23 @@ public class Field
         List<Location> free = new LinkedList<Location>();
         List<Location> adjacent = adjacentLocations(location);
         for(Location next : adjacent) {
-            if(getObjectAt(next) == null || getObjectAt(next) instanceof Grass ) {
+            if(getObjectAt(next) == null || (getObjectAt(next) instanceof Grass && !(getObjectAt(next) instanceof Fox)) ) {
                 free.add(next);
             }
         }
         return free;
+    }
+    
+    public Location freeAdjacentLocationIgnoreGrass(Location location)
+    {
+        // The available free ones.
+        List<Location> free = getFreeAdjacentLocationsIgnoreGrass(location);
+        if(free.size() > 0) {
+            return free.get(0);
+        }
+        else {
+            return null;
+        }
     }
     
     /**

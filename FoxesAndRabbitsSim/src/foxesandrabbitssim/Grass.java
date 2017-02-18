@@ -11,7 +11,7 @@ import java.util.List;
 public class Grass extends Actor
 {
 
-    private static final int growthRate = 4;
+    private static final int growthRate = 1;
 
     /**
      * Creates the grass
