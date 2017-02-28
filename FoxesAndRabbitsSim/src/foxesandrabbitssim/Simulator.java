@@ -128,6 +128,7 @@ public class Simulator
         actors.addAll(newActors);
 
         view.showStatus(step, field);
+        deathLogger.printStats();
     }
 
     /**
