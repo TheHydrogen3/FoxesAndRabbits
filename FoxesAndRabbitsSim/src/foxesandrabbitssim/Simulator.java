@@ -67,8 +67,8 @@ public class Simulator
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Rabbit.class, Color.ORANGE);
-        view.setColor(Fox.class, Color.BLUE);
+        view.setColor(Rabbit.class, Color.DARK_GRAY.brighter());
+        view.setColor(Fox.class, Color.RED.darker());
         view.setColor(Grass.class, Color.GREEN);
 
         // Setup a valid starting point.
