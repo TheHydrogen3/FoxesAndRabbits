@@ -1,6 +1,7 @@
 
 package foxesandrabbitssim;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 /**
@@ -19,5 +20,19 @@ public class DeathLogger
     public void addDeadAnimal(Actor actor)
     {
         deadAnimals.add(actor);
+    }
+    
+    public void printStats()
+    {
+        Iterator it = deadAnimals.iterator();
+        while(it.hasNext())
+        {
+            Actor actor = (Actor) it.next();
+            
+            String outputString = "";
+            outputString = outputString + actor.getClass().toString() + ", " + actor.getCauseOfDeath() + ", " + "";
+        }
+        
+            
     }
 }
