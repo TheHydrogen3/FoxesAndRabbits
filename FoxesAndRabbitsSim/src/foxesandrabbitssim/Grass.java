@@ -15,7 +15,7 @@ public class Grass extends Actor
     // The amount the grass spread each cycle 
     private static final int growthRate = 1;
     // Time between each growth cycle 
-    private static final int growthCycle = 2;
+    private static final int growthCycle = 4;
     // Holds current step
     private int cycleStep;
 
