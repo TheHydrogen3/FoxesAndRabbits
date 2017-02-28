@@ -157,17 +157,17 @@ public class Simulator
                 if (rand.nextDouble() <= FOX_CREATION_PROBABILITY)
                 {
                     Location location = new Location(row, col);
-                    Fox fox = new Fox(true, field, location);
+                    Fox fox = new Fox(true, field, location, deathLogger);
                     actors.add(fox);
                 } else if (rand.nextDouble() <= RABBIT_CREATION_PROBABILITY)
                 {
                     Location location = new Location(row, col);
-                    Rabbit rabbit = new Rabbit(true, field, location);
+                    Rabbit rabbit = new Rabbit(true, field, location, deathLogger);
                     actors.add(rabbit);
                 } else
                 {
                     Location location = new Location(row, col);
-                    Grass grass = new Grass(field, location);
+                    Grass grass = new Grass(field, location, deathLogger);
                     actors.add(grass);
                 }
             }
