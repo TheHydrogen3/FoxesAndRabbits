@@ -51,6 +51,7 @@ public class Fox extends Animal
     public Fox(boolean randomAge, Field field, Location location, DeathLogger deathLogger)
     {
         super(field, location, deathLogger);
+        this.deathLogger = deathLogger;
         if (randomAge)
         {
             age = rand.nextInt(MAX_AGE);
@@ -148,7 +149,7 @@ public class Fox extends Animal
                 Rabbit rabbit = (Rabbit) animal;
                 if (rabbit.isAlive())
                 {
-                    rabbit.setDead("Eaten", this);
+                    rabbit.setDead("Eaten", rabbit);
                     
                     foodLevel = RABBIT_FOOD_VALUE;
                     return where;

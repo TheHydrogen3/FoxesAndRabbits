@@ -27,7 +27,7 @@ public class DeathLogger
         Iterator it = deadAnimals.iterator();
         while(it.hasNext())
         {
-            Animal actor = (Animal) it.next();
+            Animal actor = deadAnimals.pop();
             
             String outputString = "";
             outputString = outputString + actor.getClass().toString() + ", " + actor.getCauseOfDeath() + ", " + "";

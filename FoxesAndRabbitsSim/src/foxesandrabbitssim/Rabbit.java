@@ -54,6 +54,7 @@ public class Rabbit extends Animal
     public Rabbit(boolean randomAge, Field field, Location location, DeathLogger deathLogger)
     {
         super(field, location, deathLogger);
+        this.deathLogger = deathLogger; 
         if (randomAge)
         {
             age = rand.nextInt(MAX_AGE);
@@ -159,7 +160,7 @@ public class Rabbit extends Animal
                 Grass grass = (Grass) actor;
                 if (grass.isAlive())
                 {
-                    grass.setDead("Eaten", this);
+                    grass.setDead("Eaten", grass);
                     foodLevel = GRASS_FOOD_VALUE;
                     return where;
                 }
