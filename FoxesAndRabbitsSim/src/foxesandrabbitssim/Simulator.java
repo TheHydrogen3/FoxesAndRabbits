@@ -43,7 +43,7 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-        deathLogger = new DeathLogger();
+        
     }
 
     /**
@@ -61,7 +61,7 @@ public class Simulator
             depth = DEFAULT_DEPTH;
             width = DEFAULT_WIDTH;
         }
-
+        deathLogger = new DeathLogger();
         actors = new ArrayList<Actor>();
         field = new Field(depth, width);
 
@@ -128,6 +128,7 @@ public class Simulator
         actors.addAll(newActors);
 
         view.showStatus(step, field);
+        deathLogger.printStats();
     }
 
     /**

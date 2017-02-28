@@ -54,6 +54,7 @@ public class Rabbit extends Animal
     public Rabbit(boolean randomAge, Field field, Location location, DeathLogger deathLogger)
     {
         super(field, location, deathLogger);
+        this.deathLogger = deathLogger; 
         if (randomAge)
         {
             age = rand.nextInt(MAX_AGE);
@@ -94,7 +95,7 @@ public class Rabbit extends Animal
             }
             else {
                 // Overcrowding.
-                setDead("Overcrowding");
+                setDead("Overcrowding", this);
             }
         }
     }
@@ -107,7 +108,7 @@ public class Rabbit extends Animal
     {
         age++;
         if(age > MAX_AGE) {
-            setDead("Old age");
+            setDead("Old age", this);
         }
     }
     
@@ -121,7 +122,7 @@ public class Rabbit extends Animal
         foodLevel--;
         if (foodLevel <= 0)
         {
-            setDead("Starvation");
+            setDead("Starvation", this);
         }
     }
     
@@ -159,7 +160,7 @@ public class Rabbit extends Animal
                 Grass grass = (Grass) actor;
                 if (grass.isAlive())
                 {
-                    grass.setDead("Eaten");
+                    grass.setDead("Eaten", grass);
                     foodLevel = GRASS_FOOD_VALUE;
                     return where;
                 }
