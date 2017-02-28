@@ -54,13 +54,13 @@ public abstract class Actor
      * Indicate that the animal is no longer alive.
      * It is removed from the field.
      */
-    protected void setDead(String causeOfDeath)
+    protected void setDead(String causeOfDeath, Object object)
     {
         alive = false;
         this.causeOfDeath = causeOfDeath;
-        if(this instanceof Animal)
+        if(object instanceof Animal)
         {
-            deathLogger.addDeadAnimal(this);
+            deathLogger.addDeadAnimal((Animal) object);
         }
         if (location != null)
         {

@@ -94,7 +94,7 @@ public class Rabbit extends Animal
             }
             else {
                 // Overcrowding.
-                setDead("Overcrowding");
+                setDead("Overcrowding", this);
             }
         }
     }
@@ -107,7 +107,7 @@ public class Rabbit extends Animal
     {
         age++;
         if(age > MAX_AGE) {
-            setDead("Old age");
+            setDead("Old age", this);
         }
     }
     
@@ -121,7 +121,7 @@ public class Rabbit extends Animal
         foodLevel--;
         if (foodLevel <= 0)
         {
-            setDead("Starvation");
+            setDead("Starvation", this);
         }
     }
     
@@ -159,7 +159,7 @@ public class Rabbit extends Animal
                 Grass grass = (Grass) actor;
                 if (grass.isAlive())
                 {
-                    grass.setDead("Eaten");
+                    grass.setDead("Eaten", this);
                     foodLevel = GRASS_FOOD_VALUE;
                     return where;
                 }

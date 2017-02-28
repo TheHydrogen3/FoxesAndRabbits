@@ -10,14 +10,14 @@ import java.util.Stack;
  */
 public class DeathLogger
 {
-    private Stack<Actor> deadAnimals;
+    private Stack<Animal> deadAnimals;
     
     public DeathLogger()
     {
         deadAnimals = new Stack<>();
     }
     
-    public void addDeadAnimal(Actor actor)
+    public void addDeadAnimal(Animal actor)
     {
         deadAnimals.add(actor);
     }
@@ -27,7 +27,7 @@ public class DeathLogger
         Iterator it = deadAnimals.iterator();
         while(it.hasNext())
         {
-            Actor actor = (Actor) it.next();
+            Animal actor = (Animal) it.next();
             
             String outputString = "";
             outputString = outputString + actor.getClass().toString() + ", " + actor.getCauseOfDeath() + ", " + "";
