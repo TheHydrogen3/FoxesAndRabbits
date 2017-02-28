@@ -56,6 +56,10 @@ public abstract class Actor
     {
         alive = false;
         this.causeOfDeath = causeOfDeath;
+        if(this instanceof Animal)
+        {
+            
+        }
         if (location != null)
         {
             field.clear(location);

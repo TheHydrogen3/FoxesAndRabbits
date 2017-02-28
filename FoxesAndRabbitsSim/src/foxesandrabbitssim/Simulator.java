@@ -34,6 +34,8 @@ public class Simulator
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
+    
+    private DeathLogger deathLogger;
 
     /**
      * Construct a simulation field with default size.
@@ -41,6 +43,7 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
+        deathLogger = new DeathLogger();
     }
 
     /**
@@ -79,6 +82,11 @@ public class Simulator
     public void runLongSimulation()
     {
         simulate(4000);
+    }
+    
+    public DeathLogger getDeathLogger()
+    {
+        return deathLogger;
     }
 
     /**
