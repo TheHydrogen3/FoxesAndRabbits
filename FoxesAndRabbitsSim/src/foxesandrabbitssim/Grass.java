@@ -12,6 +12,7 @@ public class Grass extends Actor
 {
 
     private static final int growthRate = 1;
+    private DeathLogger deathLogger;
 
     /**
      * Creates the grass
@@ -19,9 +20,9 @@ public class Grass extends Actor
      * @param field
      * @param location
      */
-    public Grass(Field field, Location location)
+    public Grass(Field field, Location location, DeathLogger deathLogger)
     {
-        super(field, location);
+        super(field, location, deathLogger);
     }
 
     /**
@@ -56,7 +57,7 @@ public class Grass extends Actor
                 Location loc = getField().freeAdjacentLocation(getLocation());
                 if (loc != null)
                 {
-                    Grass sprout = new Grass(field, loc);
+                    Grass sprout = new Grass(field, loc, deathLogger);
                     newGrass.add(sprout);
                 }
             }
