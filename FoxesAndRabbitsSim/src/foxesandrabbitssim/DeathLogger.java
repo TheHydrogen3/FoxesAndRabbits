@@ -31,6 +31,7 @@ public class DeathLogger
             
             String outputString = "";
             outputString = outputString + actor.getClass().toString() + ", " + actor.getCauseOfDeath() + ", " + "";
+            System.out.println(outputString);
         }
         
             
