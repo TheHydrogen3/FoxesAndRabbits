@@ -19,12 +19,14 @@ public abstract class Actor
         private String causeOfDeath;
         private boolean alive;
         private Field field;
+        private DeathLogger deathLogger;
     
-    public Actor(Field field, Location location)
+    public Actor(Field field, Location location, DeathLogger deathLogger)
     {
         this.field = field;
         setLocation(location);
         alive = true;
+        this.deathLogger = deathLogger;
     }
 
     /**
@@ -58,7 +60,7 @@ public abstract class Actor
         this.causeOfDeath = causeOfDeath;
         if(this instanceof Animal)
         {
-            
+            deathLogger.addDeadAnimal(this);
         }
         if (location != null)
         {

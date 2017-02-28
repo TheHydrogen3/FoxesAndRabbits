@@ -40,6 +40,8 @@ public class Rabbit extends Animal
     
     private int foodLevel;
     
+    private DeathLogger deathLogger;
+    
 
     /**
      * Create a new rabbit. A rabbit may be created with age
@@ -49,9 +51,9 @@ public class Rabbit extends Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Rabbit(boolean randomAge, Field field, Location location)
+    public Rabbit(boolean randomAge, Field field, Location location, DeathLogger deathLogger)
     {
-        super(field, location);
+        super(field, location, deathLogger);
         if (randomAge)
         {
             age = rand.nextInt(MAX_AGE);
@@ -137,7 +139,7 @@ public class Rabbit extends Animal
         int births = breed();
         for(int b = 0; b < births && free.size() > 0; b++) {
             Location loc = free.remove(0);
-            Rabbit young = new Rabbit(false, field, loc);
+            Rabbit young = new Rabbit(false, field, loc, deathLogger);
             newRabbits.add(young);
             timeSinceLastPregnant = 0;
         }

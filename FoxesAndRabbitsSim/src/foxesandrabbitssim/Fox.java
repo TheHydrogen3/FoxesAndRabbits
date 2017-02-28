@@ -38,6 +38,7 @@ public class Fox extends Animal
     private int age;
     // The fox's food level, which is increased by eating rabbits.
     private int foodLevel;
+    private DeathLogger deathLogger;
 
     /**
      * Create a fox. A fox can be created as a new born (age zero and not
@@ -47,9 +48,9 @@ public class Fox extends Animal
      * @param field The field currently occupied.
      * @param location The location within the field.
      */
-    public Fox(boolean randomAge, Field field, Location location)
+    public Fox(boolean randomAge, Field field, Location location, DeathLogger deathLogger)
     {
-        super(field, location);
+        super(field, location, deathLogger);
         if (randomAge)
         {
             age = rand.nextInt(MAX_AGE);
@@ -173,7 +174,7 @@ public class Fox extends Animal
         for (int b = 0; b < births && free.size() > 0; b++)
         {
             Location loc = free.remove(0);
-            Fox young = new Fox(false, field, loc);
+            Fox young = new Fox(false, field, loc, deathLogger);
             newFoxes.add(young);
         }
         timeSinceLastPregnant = 0;

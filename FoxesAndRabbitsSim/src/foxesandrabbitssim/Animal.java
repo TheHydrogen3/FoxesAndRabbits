@@ -28,9 +28,9 @@ public abstract class Animal extends Actor
      * 
      * @param field The field currently occupied.
      */
-    public Animal(Field field, Location location)
+    public Animal(Field field, Location location, DeathLogger deathLogger)
     {
-        super(field, location);
+        super(field, location, deathLogger);
         if(rand.nextBoolean())
         {
             gender = "Female";
