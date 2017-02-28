@@ -143,7 +143,7 @@ public class SimulatorView extends JFrame
      */
     private class FieldView extends JPanel
     {
-        private final int GRID_VIEW_SCALING_FACTOR = 6;
+        private final int GRID_VIEW_SCALING_FACTOR = 8;
 
         private int gridWidth, gridHeight;
         private int xScale, yScale;

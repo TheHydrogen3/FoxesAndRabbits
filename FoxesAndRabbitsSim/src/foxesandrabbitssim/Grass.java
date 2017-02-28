@@ -11,8 +11,13 @@ import java.util.List;
 public class Grass extends Actor
 {
 
-    private static final int growthRate = 1;
     private DeathLogger deathLogger;
+    // The amount the grass spread each cycle 
+    private static final int growthRate = 1;
+    // Time between each growth cycle 
+    private static final int growthCycle = 2;
+    // Holds current step
+    private int cycleStep;
 
     /**
      * Creates the grass
@@ -47,20 +52,24 @@ public class Grass extends Actor
      */
     protected void grow(List<Actor> newGrass)
     {
+        cycleStep ++; 
         Field field = getField();
         List<Location> free = field.getFreeAdjacentLocations(getLocation());
-
-        for (int c = 0; c <= Grass.growthRate; c++)
+        if (cycleStep >= growthCycle)
         {
-            if (free != null)
+            for (int c = 0; c <= Grass.growthRate; c++)
             {
-                Location loc = getField().freeAdjacentLocation(getLocation());
-                if (loc != null)
+                if (free != null)
                 {
-                    Grass sprout = new Grass(field, loc, deathLogger);
-                    newGrass.add(sprout);
+                    Location loc = getField().freeAdjacentLocation(getLocation());
+                    if (loc != null)
+                    {
+                        Grass sprout = new Grass(field, loc, deathLogger);
+                        newGrass.add(sprout);
+                    }
                 }
             }
+            cycleStep = 0; 
         }
     }
 }
