@@ -17,6 +17,7 @@ import java.util.Random;
 public abstract class Animal extends Actor
 {
 
+
     
     private static final Random rand = Randomizer.getRandom();
     
@@ -44,5 +45,7 @@ public abstract class Animal extends Actor
     {
         return gender;
     }
+    
+    
 
 }

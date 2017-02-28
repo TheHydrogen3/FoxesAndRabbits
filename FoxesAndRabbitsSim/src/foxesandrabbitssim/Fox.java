@@ -94,7 +94,7 @@ public class Fox extends Animal
             } else
             {
                 // Overcrowding.
-                setDead();
+                setDead("Overcrowding");
             }
         }
     }
@@ -107,7 +107,7 @@ public class Fox extends Animal
         age++;
         if (age > MAX_AGE)
         {
-            setDead();
+            setDead("Old age");
         }
     }
     private void incrementTimeSincePregnant()
@@ -123,7 +123,7 @@ public class Fox extends Animal
         foodLevel--;
         if (foodLevel <= 0)
         {
-            setDead();
+            setDead("Starvation");
         }
     }
 
@@ -147,7 +147,8 @@ public class Fox extends Animal
                 Rabbit rabbit = (Rabbit) animal;
                 if (rabbit.isAlive())
                 {
-                    rabbit.setDead();
+                    rabbit.setDead("Eaten");
+                    
                     foodLevel = RABBIT_FOOD_VALUE;
                     return where;
                 }

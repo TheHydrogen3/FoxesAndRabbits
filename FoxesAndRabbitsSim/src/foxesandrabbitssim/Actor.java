@@ -14,6 +14,9 @@ import java.util.List;
 public abstract class Actor
 {
         private Location location;
+           
+        
+        private String causeOfDeath;
         private boolean alive;
         private Field field;
     
@@ -39,14 +42,20 @@ public abstract class Actor
     {
         return alive;
     }
+    
+    public String getCauseOfDeath()
+    {
+        return causeOfDeath;
+    }
 
     /**
      * Indicate that the animal is no longer alive.
      * It is removed from the field.
      */
-    protected void setDead()
+    protected void setDead(String causeOfDeath)
     {
         alive = false;
+        this.causeOfDeath = causeOfDeath;
         if (location != null)
         {
             field.clear(location);
