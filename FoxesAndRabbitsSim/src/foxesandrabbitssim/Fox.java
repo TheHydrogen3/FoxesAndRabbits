@@ -203,4 +203,8 @@ public class Fox extends Animal
     {
         return age >= BREEDING_AGE;
     }
+    public int getAge()
+    {
+        return age;
+    }
 }
