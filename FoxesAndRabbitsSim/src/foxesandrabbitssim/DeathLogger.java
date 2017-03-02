@@ -11,6 +11,8 @@ import java.util.List;
  *
  * @author HaIIvard & Alexander
  */
+
+
 public class DeathLogger
 {
 
@@ -31,10 +33,18 @@ public class DeathLogger
         Iterator it = deadAnimals.iterator();
         while (it.hasNext())
         {
-            Animal actor = deadAnimals.pop();
+            Animal animal = deadAnimals.pop();
 
             String outputString = "";
-            outputString = outputString + actor.getClass().toString() + ", " + actor.getCauseOfDeath() + ", " + "";
+            if (animal instanceof Rabbit)
+            {
+                Rabbit rabbit = (Rabbit) animal;
+                outputString = outputString + "rabbit" + ", " + rabbit.getAge() + ", " + rabbit.getCauseOfDeath() + ", ";
+            } else if (animal instanceof Fox)
+            {
+                Fox fox = (Fox) animal;
+                outputString = outputString + "Fox" + ", " + fox.getAge() + ", " + animal.getCauseOfDeath() + ", " + "";
+            }
             System.out.println(outputString);
         }
     }
@@ -49,12 +59,22 @@ public class DeathLogger
         Iterator it = deadAnimals.iterator();
         while (it.hasNext())
         {
-            Animal actor = deadAnimals.pop();
+            Animal animal = deadAnimals.pop();
 
             List<String> list = new ArrayList<>();
-            list.add(actor.getClass());
-            list.add(actor.getCauseOfDeath());
+            if (animal instanceof Rabbit)
+            {               
+                Rabbit rabbit = (Rabbit) animal;
 
+                list.add(rabbit.getRace());
+                list.add(rabbit.getCauseOfDeath());
+            } else if (animal instanceof Fox)
+            {
+                Fox fox = (Fox) animal;
+
+                list.add(fox.getRace());
+                list.add(fox.getCauseOfDeath());
+            }
             CSVUtils.writeLine(writer, list);
         }
         writer.flush();

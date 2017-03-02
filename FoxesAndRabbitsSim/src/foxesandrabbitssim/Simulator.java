@@ -82,6 +82,7 @@ public class Simulator
     public void runLongSimulation()
     {
         simulate(4000);
+        
     }
     
     public DeathLogger getDeathLogger()

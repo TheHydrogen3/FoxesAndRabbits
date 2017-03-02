@@ -203,4 +203,15 @@ public class Fox extends Animal
     {
         return age >= BREEDING_AGE;
     }
+    public int getAge()
+    {
+        return age;
+    }
+
+    @Override
+    protected String getRace()
+    {
+        String returnString = "Rabbit";
+        return returnString;
+    }
 }

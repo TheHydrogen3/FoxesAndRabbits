@@ -29,7 +29,7 @@ public class Rabbit extends Animal
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     
-    private static final int GRASS_FOOD_VALUE = 20;
+    private static final int GRASS_FOOD_VALUE = 4;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
@@ -190,5 +190,17 @@ public class Rabbit extends Animal
     private boolean canBreed()
     {
         return age >= BREEDING_AGE;
+    }
+    
+    public int getAge()
+    {
+        return age;
+    }
+
+    @Override
+    protected String getRace()
+    {
+        String returnString = "Rabbit";
+        return returnString;
     }
 }

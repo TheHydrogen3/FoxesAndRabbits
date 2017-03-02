@@ -46,6 +46,7 @@ public abstract class Animal extends Actor
         return gender;
     }
     
-    
+    protected abstract String getRace();
+            
 
 }

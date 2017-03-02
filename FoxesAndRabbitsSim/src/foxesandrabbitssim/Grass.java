@@ -1,6 +1,7 @@
 package foxesandrabbitssim;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * A model of grass. Grass spreads every day in all directions depending on the
@@ -14,8 +15,9 @@ public class Grass extends Actor
     private DeathLogger deathLogger;
     // The amount the grass spread each cycle 
     private static final int growthRate = 1;
+    private static final int maxGrowthCycle = 50;
     // Time between each growth cycle 
-    private static final int growthCycle = 2;
+    private int growthCycle;
     // Holds current step
     private int cycleStep;
 
@@ -28,6 +30,8 @@ public class Grass extends Actor
     public Grass(Field field, Location location, DeathLogger deathLogger)
     {
         super(field, location, deathLogger);
+        Random random = new Random();
+        growthCycle = random.nextInt(maxGrowthCycle);
     }
 
     /**
