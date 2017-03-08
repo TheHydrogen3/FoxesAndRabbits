@@ -26,6 +26,9 @@ public class DeathLogger
     public DeathLogger()
     {
         deadAnimals = new Stack<>();
+        rabbitPop = new HashMap<>();
+        foxPop = new HashMap<>();
+        grassPop = new HashMap<>();
     }
 
     public void addDeadAnimal(Animal actor)
