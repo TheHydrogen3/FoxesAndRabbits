@@ -82,7 +82,7 @@ public class Simulator
      */
     public void runLongSimulation() throws IOException
     {
-        simulate(4000);
+        simulate(1000);
         deathLogger.createCSVs();
     }
 

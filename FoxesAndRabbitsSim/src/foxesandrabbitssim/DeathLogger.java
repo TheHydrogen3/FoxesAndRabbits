@@ -33,7 +33,10 @@ public class DeathLogger
 
     public void addDeadAnimal(Animal actor)
     {
-        deadAnimals.add(actor);
+        if (stepCount > 500)
+        {
+            deadAnimals.add(actor);
+        }
     }
 
     public void printStats()
@@ -59,31 +62,38 @@ public class DeathLogger
 
     /**
      * Adds the current step number as a key and the population number
-     * @param pop 
+     *
+     * @param pop
      */
     public void addRabbitPop(int pop)
     {
-        rabbitPop.put(this.stepCount, pop);        
+
+        rabbitPop.put(this.stepCount, pop);
+
     }
-    
+
     /**
      * Adds the current step number as a key and the population number
-     * @param pop 
+     *
+     * @param pop
      */
     public void addFoxPop(int pop)
     {
+
         foxPop.put(this.stepCount, pop);
+
     }
-    
+
     /**
      * Adds the current step number as a key and the population number
-     * @param pop 
+     *
+     * @param pop
      */
     public void addGrassPop(int pop)
     {
         grassPop.put(this.stepCount, pop);
     }
-    
+
     /**
      * Increases the step counter
      */
@@ -91,8 +101,7 @@ public class DeathLogger
     {
         this.stepCount++;
     }
-    
-    
+
     /**
      * Takes the animal age and death in the logger and exports it to a CSV file
      */
@@ -100,7 +109,7 @@ public class DeathLogger
     {
         String csvFile = "/Users/Public/Documents/DeathLogger.csv";
         FileWriter writer = new FileWriter(csvFile);
-        
+
         Iterator it = deadAnimals.iterator();
         while (it.hasNext())
         {
@@ -126,76 +135,76 @@ public class DeathLogger
         }
         writer.close();
     }
-    
+
     /**
-     * Creates a CSV with the population and step 
+     * Creates a CSV with the population and step
      */
     public void createRabbitPopCSV() throws IOException
     {
         String csvFile = "/Users/Public/Documents/RabbitPop.csv";
         FileWriter writer = new FileWriter(csvFile);
-        
+
         Iterator it = rabbitPop.entrySet().iterator();
-        while(it.hasNext())
+        while (it.hasNext())
         {
             List<String> list = new ArrayList<>();
             Entry thisEntry = (Entry) it.next();
-            
+
             String key = Integer.toString((int) thisEntry.getKey());
             String pop = Integer.toString((int) thisEntry.getValue());
-            
+
             list.add(key);
             list.add(pop);
-                    
-            CSVUtils.writeLine(writer, list);            
+
+            CSVUtils.writeLine(writer, list);
         }
     }
-    
+
     /**
-     * Creates a CSV with the population and step 
+     * Creates a CSV with the population and step
      */
     public void createGrassPopCSV() throws IOException
     {
         String csvFile = "/Users/Public/Documents/GrassPop.csv";
         FileWriter writer = new FileWriter(csvFile);
-        
+
         Iterator it = grassPop.entrySet().iterator();
-        while(it.hasNext())
+        while (it.hasNext())
         {
             List<String> list = new ArrayList<>();
             Entry thisEntry = (Entry) it.next();
-            
+
             String key = Integer.toString((int) thisEntry.getKey());
             String pop = Integer.toString((int) thisEntry.getValue());
-            
+
             list.add(key);
             list.add(pop);
-                    
-            CSVUtils.writeLine(writer, list);            
+
+            CSVUtils.writeLine(writer, list);
         }
     }
-    
+
     /**
-     * Creates a CSV with the population and step 
+     * Creates a CSV with the population and step
      */
     public void createFoxPopCSV() throws IOException
     {
         String csvFile = "/Users/Public/Documents/FoxPop.csv";
         FileWriter writer = new FileWriter(csvFile);
-        
+
         Iterator it = foxPop.entrySet().iterator();
-        while(it.hasNext())
+        while (it.hasNext())
         {
             List<String> list = new ArrayList<>();
             Entry thisEntry = (Entry) it.next();
-            
+
             String key = Integer.toString((int) thisEntry.getKey());
             String pop = Integer.toString((int) thisEntry.getValue());
-            
+
             list.add(key);
             list.add(pop);
-                    
-            CSVUtils.writeLine(writer, list);            
+
+            CSVUtils.writeLine(writer, list);
         }
     }
 
@@ -209,6 +218,5 @@ public class DeathLogger
         createGrassPopCSV();
         createRabbitPopCSV();
     }
-        
-    
+
 }
