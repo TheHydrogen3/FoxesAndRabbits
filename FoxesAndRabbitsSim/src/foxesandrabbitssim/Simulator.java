@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Color;
+import java.io.IOException;
 
 /**
  * A simple predator-prey simulator, based on a rectangular field containing
@@ -34,7 +35,7 @@ public class Simulator
     private int step;
     // A graphical view of the simulation.
     private SimulatorView view;
-    
+
     private DeathLogger deathLogger;
 
     /**
@@ -43,7 +44,7 @@ public class Simulator
     public Simulator()
     {
         this(DEFAULT_DEPTH, DEFAULT_WIDTH);
-        
+
     }
 
     /**
@@ -67,9 +68,9 @@ public class Simulator
 
         // Create a view of the state of each location in the field.
         view = new SimulatorView(depth, width);
-        view.setColor(Rabbit.class, Color.DARK_GRAY.brighter());
-        view.setColor(Fox.class, Color.RED.darker());
-        view.setColor(Grass.class, Color.GREEN);
+        view.setColor(Rabbit.class, Color.WHITE);
+        view.setColor(Fox.class, Color.RED);
+        view.setColor(Grass.class, Color.GREEN.darker());
 
         // Setup a valid starting point.
         reset();
@@ -79,12 +80,12 @@ public class Simulator
      * Run the simulation from its current state for a reasonably long period,
      * (4000 steps).
      */
-    public void runLongSimulation()
+    public void runLongSimulation() throws IOException
     {
-        simulate(4000);
-        
+        simulate(2000);
+        deathLogger.createCSVs();
     }
-    
+
     public DeathLogger getDeathLogger()
     {
         return deathLogger;
@@ -129,7 +130,9 @@ public class Simulator
         actors.addAll(newActors);
 
         view.showStatus(step, field);
-        deathLogger.printStats();
+
+        addPopCount();
+        deathLogger.increaseStep();
     }
 
     /**
@@ -174,5 +177,35 @@ public class Simulator
                 }
             }
         }
+    }
+
+    /**
+     * Creates and adds the population number
+     */
+    private void addPopCount()
+    {
+        int rabbitPop = 0;
+        int foxPop = 0;
+        int grassPop = 0;
+
+        for (Iterator<Actor> it = actors.iterator(); it.hasNext();)
+        {
+            Actor actor = it.next();
+
+            if (actor instanceof Rabbit)
+            {
+                rabbitPop++;
+            } else if (actor instanceof Fox)
+            {
+                foxPop++;
+            } else if (actor instanceof Grass)
+            {
+                grassPop++;
+            }
+        }
+
+        deathLogger.addRabbitPop(rabbitPop);
+        deathLogger.addFoxPop(foxPop);
+        deathLogger.addGrassPop(grassPop);
     }
 }
