@@ -78,7 +78,7 @@ public class Fox extends Animal
         incrementHunger();
         if (isAlive())
         {
-            if (getGender().equals("Female") && timeSinceLastPregnant > 365)
+            if (timeSinceLastPregnant > 365)
 
             {
                 giveBirth(newFoxes);
