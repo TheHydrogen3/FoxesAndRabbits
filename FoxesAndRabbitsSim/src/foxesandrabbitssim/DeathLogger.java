@@ -94,7 +94,7 @@ public class DeathLogger
     
     
     /**
-     * Takes the animal age and death in the logger and exports it to a CSV file
+     * Takes the animals age and death in the logger and exports it to a CSV file
      */
     public void createDeathCSV() throws IOException
     {
@@ -114,7 +114,7 @@ public class DeathLogger
                 list.add(rabbit.getRace());
                 list.add(rabbit.getCauseOfDeath());
                 list.add(Integer.toString(rabbit.getAge()));
-            } else if (animal instanceof Fox)
+            }else if (animal instanceof Fox)
             {
                 Fox fox = (Fox) animal;
 
@@ -126,6 +126,62 @@ public class DeathLogger
         }
         writer.close();
     }
+    /**
+     * Takes the rabbit age and death in the logger and exports it to a CSV file
+     */
+    public void createDeathRabbitsCSV() throws IOException
+    {
+        String csvFile = "/Users/Public/Documents/DeathLoggerRabbits.csv";
+        FileWriter writer = new FileWriter(csvFile);
+        
+        Iterator it = deadAnimals.iterator();
+        while (it.hasNext())
+        {
+            Animal animal = deadAnimals.pop();
+            List<String> list = new ArrayList<>();
+
+            if (animal instanceof Rabbit)
+            {
+                Rabbit rabbit = (Rabbit) animal;
+
+                list.add(rabbit.getRace());
+                list.add(rabbit.getCauseOfDeath());
+                list.add(Integer.toString(rabbit.getAge()));
+            }
+            CSVUtils.writeLine(writer, list);
+        }
+        writer.close();
+    }
+    
+    /**
+     * Takes the fox age and death in the logger and exports it to a CSV file
+     */
+    public void createDeathFoxCSV() throws IOException
+    {
+        String csvFile = "/Users/Public/Documents/DeathLoggerFox.csv";
+        FileWriter writer = new FileWriter(csvFile);
+        
+        Iterator it = deadAnimals.iterator();
+        while (it.hasNext())
+        {
+            Animal animal = deadAnimals.pop();
+            List<String> list = new ArrayList<>();
+
+            if (animal instanceof Fox)
+            {
+                Fox fox = (Fox) animal;
+
+                list.add(fox.getRace());
+                list.add(fox.getCauseOfDeath());
+                list.add(Integer.toString(fox.getAge()));
+            }
+            CSVUtils.writeLine(writer, list);
+        }
+        writer.close();
+    }
+    
+    
+    
     
     /**
      * Creates a CSV with the population and step 
@@ -205,6 +261,8 @@ public class DeathLogger
     void createCSVs() throws IOException
     {
         createDeathCSV();
+        createDeathRabbitsCSV();
+        createDeathFoxCSV();
         createFoxPopCSV();
         createGrassPopCSV();
         createRabbitPopCSV();
