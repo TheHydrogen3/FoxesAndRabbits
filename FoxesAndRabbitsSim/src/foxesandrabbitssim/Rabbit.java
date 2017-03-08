@@ -29,7 +29,7 @@ public class Rabbit extends Animal
     // The maximum number of births.
     private static final int MAX_LITTER_SIZE = 4;
     
-    private static final int GRASS_FOOD_VALUE = 4;
+    private static final int GRASS_FOOD_VALUE = 20;
     // A shared random number generator to control breeding.
     private static final Random rand = Randomizer.getRandom();
     
