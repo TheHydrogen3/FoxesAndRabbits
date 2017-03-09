@@ -1,7 +1,6 @@
 package foxesandrabbitssim;
 
 import java.util.Iterator;
-import java.util.Stack;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import java.util.Map.Entry;
 public class DeathLogger
 {
 
-    private Stack<Animal> deadAnimals;
+    private HashMap<Animal, Integer> deadAnimals;
 
     private HashMap<Integer, Integer> rabbitPop;
     private HashMap<Integer, Integer> foxPop;
@@ -25,7 +24,7 @@ public class DeathLogger
 
     public DeathLogger()
     {
-        deadAnimals = new Stack<>();
+        deadAnimals = new HashMap<>();
         rabbitPop = new HashMap<>();
         foxPop = new HashMap<>();
         grassPop = new HashMap<>();
@@ -35,28 +34,7 @@ public class DeathLogger
     {
         if (stepCount > 500)
         {
-            deadAnimals.add(actor);
-        }
-    }
-
-    public void printStats()
-    {
-        Iterator it = deadAnimals.iterator();
-        while (it.hasNext())
-        {
-            Animal animal = deadAnimals.pop();
-
-            String outputString = "";
-            if (animal instanceof Rabbit)
-            {
-                Rabbit rabbit = (Rabbit) animal;
-                outputString = outputString + "rabbit" + ", " + rabbit.getAge() + ", " + rabbit.getCauseOfDeath() + ", ";
-            } else if (animal instanceof Fox)
-            {
-                Fox fox = (Fox) animal;
-                outputString = outputString + "Fox" + ", " + fox.getAge() + ", " + animal.getCauseOfDeath() + ", " + "";
-            }
-            System.out.println(outputString);
+            deadAnimals.put(actor, stepCount);
         }
     }
 
@@ -110,10 +88,10 @@ public class DeathLogger
         String csvFile = "/Users/Public/Documents/DeathLogger.csv";
         FileWriter writer = new FileWriter(csvFile);
 
-        Iterator it = deadAnimals.iterator();
+        Iterator it = deadAnimals.keySet().iterator();
         while (it.hasNext())
         {
-            Animal animal = deadAnimals.pop();
+            Animal animal = (Animal) it.next();
             List<String> list = new ArrayList<>();
 
             if (animal instanceof Rabbit)
@@ -123,6 +101,7 @@ public class DeathLogger
                 list.add(rabbit.getRace());
                 list.add(rabbit.getCauseOfDeath());
                 list.add(Integer.toString(rabbit.getAge()));
+                list.add(Integer.toString(deadAnimals.get(animal)));
             } else if (animal instanceof Fox)
             {
                 Fox fox = (Fox) animal;
@@ -130,6 +109,7 @@ public class DeathLogger
                 list.add(fox.getRace());
                 list.add(fox.getCauseOfDeath());
                 list.add(Integer.toString(fox.getAge()));
+                list.add(Integer.toString(deadAnimals.get(animal)));
             }
             CSVUtils.writeLine(writer, list);
         }
